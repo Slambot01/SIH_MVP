@@ -704,7 +704,15 @@
         gap: 3rem;
         margin-bottom: 3rem;
       }
-
+      .map-display {
+        background: red;
+        object-fit: contain;
+        object-position: center;
+        max-height: 100%;
+        max-width: 100%;
+        min-height: 400px;
+        max-height: 500px;
+      }
       .footer-section h3 {
         margin-bottom: 1.5rem;
         font-weight: 500;
@@ -761,7 +769,24 @@
         color: #999;
         font-weight: 300;
       }
+      /* Map Section */
+      .map-section {
+        padding: 8rem 0;
+        background: white;
+      }
 
+      .map-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        min-height: 600px;
+      }
+
+      /* Plus 50+ more CSS rules for map styling, animations, responsiveness */
       /* Animations */
       @keyframes fadeInUp {
         from {
@@ -1170,6 +1195,7 @@
         <ul class="nav-links">
           <li><a href="#destinations">Destinations</a></li>
           <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#transport">Live Transport</a></li>
           <li><a href="#marketplace">Marketplace</a></li>
           <li><a href="#about">About Jharkhand</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -1434,7 +1460,48 @@
         </div>
       </div>
     </section>
+    <section class="map-section" id="transport">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Live Transport & Navigation</h2>
+          <p class="section-subtitle">
+            Real-time location services, taxi booking, and route planning across
+            Jharkhand
+          </p>
+        </div>
 
+        <div class="map-container">
+          <div class="map-interface">
+            <div class="map-header">
+              <!-- Location info and controls -->
+            </div>
+            <div class="map-display">
+              <img
+                src="mapp.png"
+                alt="Jharkhand Interactive Map"
+                class="map-image"
+              />
+
+              <!-- Transport overlays with taxi/bus markers -->
+              <div
+                class="transport-overlay taxi-1"
+                style="top: 180px; left: 320px"
+              >
+                <!-- Taxi info -->
+              </div>
+            </div>
+            <div class="route-panel">
+              <!-- Route planning inputs -->
+            </div>
+          </div>
+
+          <div class="transport-sidebar">
+            <!-- Available transport options -->
+            <!-- Popular destinations -->
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="marketplace-section" id="marketplace">
       <div class="container">
         <div class="section-header">
@@ -1843,6 +1910,193 @@
     </div>
 
     <script>
+      // Map Functions
+      function centerMap() {
+        alert(
+          "🎯 Map centered on your current location\nRanchi, Jharkhand\nCoordinates: 23.3441° N, 85.3096° E"
+        );
+      }
+
+      function findNearbyTaxis() {
+        // Simulate finding taxis
+        const taxis = [
+          {
+            name: "Rajesh Kumar",
+            distance: "3.2km",
+            time: "5 min",
+            cost: "₹80",
+            rating: 4.8,
+          },
+          {
+            name: "Amit Singh",
+            distance: "1.8km",
+            time: "3 min",
+            cost: "₹65",
+            rating: 4.9,
+          },
+          {
+            name: "Suresh Yadav",
+            distance: "4.1km",
+            time: "7 min",
+            cost: "₹95",
+            rating: 4.7,
+          },
+        ];
+
+        let message = "🚕 Available Taxis Near You:\n\n";
+        taxis.forEach((taxi, index) => {
+          message += `${index + 1}. ${taxi.name}\n   ${taxi.distance} • ${
+            taxi.time
+          } • ${taxi.cost} • ⭐${taxi.rating}\n\n`;
+        });
+        message += 'Tap "Book Now" to reserve your ride!';
+
+        alert(message);
+      }
+
+      function toggleTraffic() {
+        const trafficStatus = Math.random() > 0.5 ? "Light" : "Moderate";
+        const color = trafficStatus === "Light" ? "🟢" : "🟡";
+
+        alert(`🚦 Traffic Status: ${color} ${trafficStatus}
+
+Current Road Conditions:
+• Main City Routes: Clear
+• Highway to Hundru Falls: ${trafficStatus}
+• Temple Route (Baidyanath): Light
+• Airport Road: Clear
+
+Estimated delays: ${
+          trafficStatus === "Light" ? "0-5 minutes" : "10-15 minutes"
+        }`);
+      }
+
+      function planRoute() {
+        const destination = document.getElementById("destinationInput").value;
+
+        if (!destination.trim()) {
+          alert("Please enter your destination first!");
+          return;
+        }
+
+        // Simulate route planning
+        const routes = {
+          "hundru falls": {
+            distance: "45 km",
+            time: "1h 20min",
+            cost: "₹650",
+            route: "Via NH-33 → Hundru Road",
+          },
+          "baidyanath temple": {
+            distance: "150 km",
+            time: "3h 15min",
+            cost: "₹1,200",
+            route: "Via NH-114 → Deoghar",
+          },
+          "betla national park": {
+            distance: "120 km",
+            time: "2h 45min",
+            cost: "₹980",
+            route: "Via NH-99 → Betla Road",
+          },
+        };
+
+        const key = destination.toLowerCase();
+        const route = routes[key] || {
+          distance: `${Math.floor(Math.random() * 100) + 20} km`,
+          time: `${Math.floor(Math.random() * 3) + 1}h ${Math.floor(
+            Math.random() * 60
+          )}min`,
+          cost: `₹${Math.floor(Math.random() * 800) + 200}`,
+          route: "Route via main highways",
+        };
+
+        alert(`🗺️ Route to ${destination}:
+
+📍 Distance: ${route.distance}
+⏱️ Estimated Time: ${route.time}
+💰 Estimated Cost: ${route.cost}
+🛣️ Best Route: ${route.route}
+
+Traffic: Light to moderate
+Fuel stops: 2 available
+Scenic spots: 3 along the way
+
+Ready to start your journey?`);
+      }
+
+      function selectDestination(destination) {
+        document.getElementById("destinationInput").value = destination;
+        planRoute();
+      }
+
+      function bookTaxi(type) {
+        const taxiTypes = {
+          local: {
+            name: "Local Taxi",
+            cost: "₹65-80",
+            time: "3-5 minutes",
+            driver: "Rajesh Kumar",
+            vehicle: "Maruti Swift Dzire",
+            features: ["AC", "GPS Tracking", "Digital Payment"],
+          },
+          auto: {
+            name: "Auto Rickshaw",
+            cost: "₹40-55",
+            time: "2-4 minutes",
+            driver: "Ravi Das",
+            vehicle: "Bajaj Auto",
+            features: ["Meter System", "Local Expert"],
+          },
+        };
+
+        const taxi = taxiTypes[type];
+
+        alert(`🚕 Booking ${taxi.name}:
+
+Driver: ${taxi.driver}
+Vehicle: ${taxi.vehicle}
+Pickup Time: ${taxi.time}
+Cost: ${taxi.cost}
+Features: ${taxi.features.join(", ")}
+
+✅ Your ride has been booked!
+Driver will call you shortly.
+
+Booking ID: JH${Math.floor(Math.random() * 10000)}
+Track your ride in real-time.`);
+      }
+
+      function checkSchedule() {
+        const schedules = [
+          {
+            route: "15A - City Center → Hundru Falls",
+            times: ["6:30 AM", "9:15 AM", "12:30 PM", "3:45 PM", "6:00 PM"],
+            fare: "₹25",
+          },
+          {
+            route: "22B - Ranchi → Deoghar",
+            times: ["7:00 AM", "11:30 AM", "4:00 PM"],
+            fare: "₹180",
+          },
+          {
+            route: "8C - Local City Route",
+            times: ["Every 15 minutes"],
+            fare: "₹15",
+          },
+        ];
+
+        let message = "🚌 Public Bus Schedule:\n\n";
+        schedules.forEach((schedule, index) => {
+          message += `${index + 1}. ${schedule.route}\n   Fare: ${
+            schedule.fare
+          }\n   Times: ${schedule.times.join(", ")}\n\n`;
+        });
+        message += "Real-time tracking available on Jharkhand Transport app.";
+
+        alert(message);
+      }
+
       // Chatbot functionality
       let chatbotOpen = false;
       let conversationHistory = [];
