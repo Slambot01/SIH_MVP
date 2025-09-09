@@ -23,6 +23,7 @@
         position: fixed;
         top: 20px;
         left: 20px;
+        height: 80px;
         right: 20px;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(20px);
@@ -31,6 +32,7 @@
         border-radius: 50px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
+        overflow: visible;
       }
 
       .nav-container {
@@ -40,10 +42,29 @@
       }
 
       .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+      }
+
+      .logo img {
+        height: 50px;
+        background: white;
+        width: auto;
+        border-radius: 500px;
+        transition: all 0.3s ease;
+        margin-left: -10px;
+      }
+
+      .logo-text {
         font-size: 1.5rem;
         font-weight: 700;
-        color: white;
-        text-decoration: none;
+        color: inherit;
         letter-spacing: 2px;
       }
 
@@ -807,8 +828,8 @@
         z-index: 2000;
         left: 0;
         top: 0;
-        max-width: 100%;
-        max-height: 100%;
+        width: 100%;
+        height: 100%;
         background-color: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
       }
@@ -883,12 +904,269 @@
         color: white;
         border-color: #27ae60;
       }
+
+      /* Chatbot Styles */
+      .chatbot-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1500;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .chatbot-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .chatbot-container {
+        position: fixed;
+        bottom: 120px;
+        right: 30px;
+        width: 400px;
+        height: 600px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        z-index: 1500;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        animation: chatbotSlideIn 0.3s ease;
+      }
+
+      @keyframes chatbotSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .chatbot-header {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .chatbot-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .chatbot-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+      }
+
+      .chatbot-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .chatbot-messages {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        background: #f8f9fa;
+      }
+
+      .message {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .message.user {
+        align-items: flex-end;
+      }
+
+      .message.bot {
+        align-items: flex-start;
+      }
+
+      .message-content {
+        max-width: 80%;
+        padding: 0.8rem 1.2rem;
+        border-radius: 18px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .message.user .message-content {
+        background: #2c3e50;
+        color: white;
+      }
+
+      .message.bot .message-content {
+        background: white;
+        color: #333;
+        border: 1px solid #e9ecef;
+      }
+
+      .message-time {
+        font-size: 0.7rem;
+        color: #999;
+        margin-top: 0.3rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+
+      .chatbot-input-container {
+        padding: 1rem;
+        background: white;
+        border-top: 1px solid #e9ecef;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .chatbot-input {
+        flex: 1;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e9ecef;
+        border-radius: 25px;
+        outline: none;
+        font-size: 0.9rem;
+        font-family: inherit;
+      }
+
+      .chatbot-input:focus {
+        border-color: #3498db;
+      }
+
+      .chatbot-send {
+        background: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+      }
+
+      .chatbot-send:hover {
+        background: #34495e;
+      }
+
+      .quick-replies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .quick-reply {
+        background: #e9ecef;
+        border: 1px solid #dee2e6;
+        color: #495057;
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .quick-reply:hover {
+        background: #2c3e50;
+        color: white;
+        border-color: #2c3e50;
+      }
+
+      .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 18px;
+        max-width: 80%;
+      }
+
+      .typing-dots {
+        display: flex;
+        gap: 0.3rem;
+      }
+
+      .typing-dot {
+        width: 6px;
+        height: 6px;
+        background: #999;
+        border-radius: 50%;
+        animation: typing 1.4s infinite;
+      }
+
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+        }
+        30% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Mobile responsiveness for chatbot */
+      @media (max-width: 768px) {
+        .chatbot-container {
+          width: 90%;
+          height: 80%;
+          right: 5%;
+          bottom: 100px;
+        }
+
+        .chatbot-button {
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="header">
       <nav class="nav-container">
-        <a href="#" class="logo">Jharkhand Tourism</a>
+        <a href="#" class="logo">
+          <img src="logoe2.png" alt="Jharkhand Tourism Logo" />
+          <span class="logo-text">Jharkhand Tourism</span>
+        </a>
         <ul class="nav-links">
           <li><a href="#destinations">Destinations</a></li>
           <li><a href="#experiences">Experiences</a></li>
@@ -1433,11 +1711,59 @@
         <div class="footer-bottom">
           <p>
             © 2025 Jharkhand Tourism. Crafted with care for authentic Jharkhand
-            experiences by Team SIH.
+            experiences by Team DeBlock.
           </p>
         </div>
       </div>
     </footer>
+
+    <!-- Chatbot -->
+    <button class="chatbot-button" onclick="toggleChatbot()">💬</button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
+        <div class="chatbot-title">Jharkhand Travel Assistant</div>
+        <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot">
+          <div class="message-content">
+            Hi! I'm your Jharkhand Travel Assistant. I can help you plan amazing
+            trips to waterfalls, temples, wildlife sanctuaries, and cultural
+            sites across Jharkhand. What kind of experience are you looking for?
+          </div>
+          <div class="message-time">Just now</div>
+          <div class="quick-replies">
+            <div class="quick-reply" onclick="sendQuickReply('Waterfalls')">
+              🏔️ Waterfalls
+            </div>
+            <div class="quick-reply" onclick="sendQuickReply('Temples')">
+              🛕 Temples
+            </div>
+            <div class="quick-reply" onclick="sendQuickReply('Wildlife')">
+              🐅 Wildlife
+            </div>
+            <div class="quick-reply" onclick="sendQuickReply('Culture')">
+              🎭 Culture
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-input-container">
+        <input
+          type="text"
+          class="chatbot-input"
+          id="chatbotInput"
+          placeholder="Ask me about Jharkhand destinations..."
+          onkeypress="if(event.key==='Enter') sendMessage()"
+        />
+        <button class="chatbot-send" onclick="sendMessage()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <!-- Modals -->
     <div id="plannerModal" class="modal">
@@ -1517,6 +1843,330 @@
     </div>
 
     <script>
+      // Chatbot functionality
+      let chatbotOpen = false;
+      let conversationHistory = [];
+
+      // Hardcoded conversation data
+      const chatbotResponses = {
+        waterfalls: {
+          message:
+            "Jharkhand has stunning waterfalls! Here are the top ones:\n\n🏔️ **Hundru Falls (98m)** - Most famous, 45km from Ranchi\n💧 **Jonha Falls** - Perfect for trekking, near Ranchi\n🌊 **Dassam Falls** - Beautiful multi-tiered cascade\n\nWhich one interests you most? I can create a detailed 2-3 day itinerary!",
+          quickReplies: [
+            "Hundru Falls",
+            "Jonha Falls",
+            "Dassam Falls",
+            "All waterfalls tour",
+          ],
+        },
+        "hundru falls": {
+          message:
+            "Perfect choice! Here's your Hundru Falls adventure:\n\n**Day 1:**\n• Morning: Drive from Ranchi (1.5 hours)\n• Afternoon: Trek to viewpoint, photography\n• Evening: Stay at eco-resort nearby\n\n**Day 2:**\n• Early morning: Sunrise at falls\n• Adventure activities: rock climbing, rappelling\n• Local tribal village visit\n\n**Cost:** ₹1,850 per person\n**Best time:** October-March\n\nWant me to book this or explore more options?",
+          quickReplies: [
+            "Book this trip",
+            "Add more waterfalls",
+            "Check weather",
+            "Local food options",
+          ],
+        },
+        temples: {
+          message:
+            "Jharkhand's spiritual heritage is incredible! Top temple experiences:\n\n🛕 **Baidyanath Temple, Deoghar** - One of 12 Jyotirlingas\n⛩️ **Parasnath Hill** - Sacred Jain pilgrimage site\n🏛️ **Rajrappa Temple** - Goddess Chinnamasta shrine\n\nEach offers unique spiritual experiences. Which draws your interest?",
+          quickReplies: [
+            "Baidyanath Temple",
+            "Parasnath Hill",
+            "Rajrappa Temple",
+            "Spiritual tour package",
+          ],
+        },
+        "baidyanath temple": {
+          message:
+            "Baidyanath Temple is magnificent! Here's your spiritual journey:\n\n**Day 1: Arrival in Deoghar**\n• Evening: Temple darshan, aarti experience\n• Stay: Heritage guesthouse\n\n**Day 2: Full Temple Experience**\n• Early morning: Special puja arrangement\n• Temple complex exploration\n• Local spiritual guide included\n\n**Cost:** ₹980 per person\n**Includes:** Accommodation, meals, guide\n\nShall I arrange your spiritual retreat?",
+          quickReplies: [
+            "Book temple tour",
+            "Add nearby attractions",
+            "Festival dates",
+            "Transportation",
+          ],
+        },
+        wildlife: {
+          message:
+            "Jharkhand's wildlife is amazing! Top destinations:\n\n🐅 **Betla National Park** - Tigers, elephants, leopards\n🦌 **Hazaribagh Wildlife Sanctuary** - Deer, wild boar\n🐘 **Palamau Tiger Reserve** - Project Tiger reserve\n\nWhich wildlife experience excites you most?",
+          quickReplies: [
+            "Betla National Park",
+            "Hazaribagh Sanctuary",
+            "Tiger safari",
+            "Bird watching",
+          ],
+        },
+        "betla national park": {
+          message:
+            "Excellent choice for wildlife! Your Betla adventure:\n\n**Day 1:**\n• Morning: Jeep safari (6 AM)\n• Afternoon: Nature walk with naturalist\n• Evening: Tribal cultural program\n\n**Day 2:**\n• Dawn: Bird watching expedition\n• Morning: Elephant safari\n• Visit: Betla Fort ruins\n\n**Day 3:**\n• Final safari, departure\n\n**Cost:** ₹2,680 per person\n**Best time:** October-April\n\nReady to book your wildlife adventure?",
+          quickReplies: [
+            "Book safari",
+            "Photography tips",
+            "What to pack",
+            "Best season",
+          ],
+        },
+        culture: {
+          message:
+            "Jharkhand's tribal culture is fascinating! Cultural experiences:\n\n🎭 **Sohrai Art Workshops** - Traditional wall painting\n🏠 **Tribal Village Homestays** - Authentic rural life\n🎵 **Folk Music & Dance** - Traditional performances\n🎨 **Handicraft Centers** - Local artisan visits\n\nWhat cultural aspect interests you most?",
+          quickReplies: [
+            "Sohrai art",
+            "Village homestay",
+            "Folk performances",
+            "Complete cultural tour",
+          ],
+        },
+        "sohrai art": {
+          message:
+            "Sohrai art is beautiful! Here's your cultural immersion:\n\n**Day 1-2: Hazaribagh**\n• Meet master artist Sita Devi\n• Learn traditional techniques\n• Create your own Sohrai painting\n• Village walk, local meals\n\n**Day 3: Art Gallery Tour**\n• Local handicraft centers\n• Meet more tribal artists\n• Purchase authentic pieces\n\n**Cost:** ₹1,650 per person\n**Includes:** Materials, meals, homestay\n\nExcited to learn this ancient art form?",
+          quickReplies: [
+            "Book art workshop",
+            "Other tribal arts",
+            "Best time to visit",
+            "What to bring",
+          ],
+        },
+        "all waterfalls tour": {
+          message:
+            "Amazing! Complete waterfall expedition:\n\n**Day 1: Hundru Falls**\n• Morning arrival, trekking\n• Photography session\n\n**Day 2: Jonha Falls**\n• Adventure activities\n• Cave exploration\n\n**Day 3: Dassam Falls**\n• Picnic setup\n• Local tribal interaction\n\n**Day 4: Hidden Gems**\n• Panchghagh Falls\n• Hirni Falls\n\n**Cost:** ₹3,200 per person (4 days)\n**Season:** October-March\n\nThis will be an unforgettable waterfall adventure!",
+          quickReplies: [
+            "Book waterfall tour",
+            "Customize itinerary",
+            "Group discounts",
+            "Photography guide",
+          ],
+        },
+      };
+
+      function toggleChatbot() {
+        const container = document.getElementById("chatbotContainer");
+        chatbotOpen = !chatbotOpen;
+
+        if (chatbotOpen) {
+          container.style.display = "flex";
+          document.getElementById("chatbotInput").focus();
+        } else {
+          container.style.display = "none";
+        }
+      }
+
+      function addMessage(content, isUser = false, showQuickReplies = []) {
+        const messagesContainer = document.getElementById("chatbotMessages");
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `message ${isUser ? "user" : "bot"}`;
+
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        messageDiv.innerHTML = `
+          <div class="message-content">${content}</div>
+          <div class="message-time">${timeString}</div>
+          ${
+            showQuickReplies.length > 0
+              ? `
+            <div class="quick-replies">
+              ${showQuickReplies
+                .map(
+                  (reply) => `
+                <div class="quick-reply" onclick="sendQuickReply('${reply}')">${reply}</div>
+              `
+                )
+                .join("")}
+            </div>
+          `
+              : ""
+          }
+        `;
+
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function showTypingIndicator() {
+        const messagesContainer = document.getElementById("chatbotMessages");
+        const typingDiv = document.createElement("div");
+        typingDiv.className = "message bot";
+        typingDiv.id = "typing-indicator";
+        typingDiv.innerHTML = `
+          <div class="typing-indicator">
+            <span>AI is typing</span>
+            <div class="typing-dots">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+          </div>
+        `;
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function removeTypingIndicator() {
+        const typingIndicator = document.getElementById("typing-indicator");
+        if (typingIndicator) {
+          typingIndicator.remove();
+        }
+      }
+
+      function getBotResponse(userMessage) {
+        const message = userMessage.toLowerCase().trim();
+
+        // Check for exact matches first
+        if (chatbotResponses[message]) {
+          return chatbotResponses[message];
+        }
+
+        // Check for partial matches
+        for (let key in chatbotResponses) {
+          if (message.includes(key)) {
+            return chatbotResponses[key];
+          }
+        }
+
+        // Keyword-based responses
+        if (message.includes("ranchi")) {
+          return {
+            message:
+              "Ranchi, the capital of Jharkhand! Key attractions:\n\n🏛️ **Rock Garden** - Beautiful sculptures\n💧 **Kanke Dam** - Boating & picnics\n🌳 **Tagore Hill** - Scenic viewpoint\n⛩️ **Jagannath Temple** - Spiritual site\n\nWould you like a Ranchi city tour itinerary?",
+            quickReplies: [
+              "Ranchi city tour",
+              "Rock Garden visit",
+              "Day trips from Ranchi",
+              "Best hotels",
+            ],
+          };
+        }
+
+        if (message.includes("food") || message.includes("cuisine")) {
+          return {
+            message:
+              "Jharkhand cuisine is delicious! Must-try dishes:\n\n🍛 **Litti Chokha** - Roasted wheat balls with spicy filling\n🐟 **Fish curry** - Local river fish preparations\n🍖 **Mutton curry** - Tribal style preparation\n🥘 **Pitha** - Traditional rice cakes\n🍯 **Mahua** - Local liquor from flowers\n\nInterested in a food tour?",
+            quickReplies: [
+              "Food tour",
+              "Cooking classes",
+              "Best restaurants",
+              "Street food guide",
+            ],
+          };
+        }
+
+        if (
+          message.includes("budget") ||
+          message.includes("cost") ||
+          message.includes("price")
+        ) {
+          return {
+            message:
+              "Budget-friendly Jharkhand travel options:\n\n💰 **Budget (₹1,000-2,000/day):**\n• Local transport, basic stays\n• Street food, local guides\n\n💳 **Mid-range (₹2,000-4,000/day):**\n• AC accommodation, guided tours\n• Restaurant meals, private transport\n\n💎 **Luxury (₹4,000+/day):**\n• Premium resorts, helicopter tours\n• Fine dining, personal guides\n\nWhat's your preferred budget range?",
+            quickReplies: [
+              "Budget options",
+              "Mid-range packages",
+              "Luxury experiences",
+              "Group discounts",
+            ],
+          };
+        }
+
+        if (
+          message.includes("when") ||
+          message.includes("season") ||
+          message.includes("weather")
+        ) {
+          return {
+            message:
+              "Best time to visit Jharkhand:\n\n🌤️ **October-March (Best):**\n• Pleasant weather (15-25°C)\n• Clear skies, perfect for sightseeing\n• Festival season\n\n☀️ **April-June (Hot):**\n• Hot weather (30-40°C)\n• Good for hill stations\n\n🌧️ **July-September (Monsoon):**\n• Heavy rainfall\n• Lush greenery, waterfalls at peak\n• Some areas inaccessible\n\nWhen are you planning to visit?",
+            quickReplies: [
+              "October-March trip",
+              "Monsoon waterfalls",
+              "Summer escapes",
+              "Festival calendar",
+            ],
+          };
+        }
+
+        // Default responses for common greetings
+        if (
+          message.includes("hello") ||
+          message.includes("hi") ||
+          message.includes("hey")
+        ) {
+          return {
+            message:
+              "Hello! Welcome to Jharkhand! I'm excited to help you discover our beautiful state. Are you interested in waterfalls, temples, wildlife, or cultural experiences?",
+            quickReplies: ["Waterfalls", "Temples", "Wildlife", "Culture"],
+          };
+        }
+
+        if (message.includes("thank")) {
+          return {
+            message:
+              "You're welcome! I'm here whenever you need help planning your Jharkhand adventure. Have a wonderful trip! 🌟",
+            quickReplies: [
+              "Plan another trip",
+              "Contact details",
+              "Emergency numbers",
+              "Travel tips",
+            ],
+          };
+        }
+
+        // Default fallback response
+        return {
+          message:
+            "I'd love to help you explore Jharkhand! I can assist with:\n\n🏔️ Waterfall adventures\n🛕 Temple visits\n🐅 Wildlife safaris\n🎭 Cultural experiences\n🏨 Accommodation\n🚗 Transportation\n\nWhat would you like to know more about?",
+          quickReplies: [
+            "Waterfalls",
+            "Temples",
+            "Wildlife",
+            "Culture",
+            "Hotels",
+            "Transport",
+          ],
+        };
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatbotInput");
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        // Add user message
+        addMessage(message, true);
+        input.value = "";
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        // Simulate AI thinking time
+        setTimeout(() => {
+          removeTypingIndicator();
+          const response = getBotResponse(message);
+          addMessage(response.message, false, response.quickReplies || []);
+        }, 1500);
+      }
+
+      function sendQuickReply(reply) {
+        // Add user message
+        addMessage(reply, true);
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        // Get response
+        setTimeout(() => {
+          removeTypingIndicator();
+          const response = getBotResponse(reply);
+          addMessage(response.message, false, response.quickReplies || []);
+        }, 1200);
+      }
+
       // Modal Functions
       function openPlannerModal() {
         document.getElementById("plannerModal").style.display = "block";
@@ -1612,6 +2262,7 @@ This immersive preview helps you choose your perfect Jharkhand destinations befo
           header.style.background = "rgba(255, 255, 255, 0.95)";
           header.style.backdropFilter = "blur(20px)";
           header.querySelector(".logo").style.color = "#2c3e50";
+          header.querySelector(".logo-text").style.color = "#2c3e50";
           header.querySelectorAll(".nav-links a").forEach((link) => {
             link.style.color = "#2c3e50";
           });
@@ -1621,6 +2272,7 @@ This immersive preview helps you choose your perfect Jharkhand destinations befo
           header.style.background = "rgba(255, 255, 255, 0.1)";
           header.style.backdropFilter = "blur(20px)";
           header.querySelector(".logo").style.color = "white";
+          header.querySelector(".logo-text").style.color = "white";
           header.querySelectorAll(".nav-links a").forEach((link) => {
             link.style.color = "white";
           });
